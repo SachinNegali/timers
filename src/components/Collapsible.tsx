@@ -1,8 +1,9 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import TimerCard from './TimerCard';
 import PrimaryButton from './formElements/PrimaryButton';
 import {updateData} from '../helpers/storage';
+import Chevron from '../../assets/down.png';
 
 interface CollapsibleProps {
   label: string;
@@ -115,7 +116,10 @@ const Collapsible = ({label, items, timerComplete}: CollapsibleProps) => {
     <View style={[styles.card, isOpen && styles.cardOpen]}>
       <Pressable style={styles.row} onPress={() => setIsOpen(!isOpen)}>
         <Text style={styles.title}>{label}</Text>
-        <Text>v</Text>
+        <Image
+          source={Chevron}
+          style={[styles.lebron, isOpen && {transform: [{rotate: '180deg'}]}]}
+        />
       </Pressable>
       {isOpen && (
         <>
@@ -183,5 +187,9 @@ const styles = StyleSheet.create({
     // borderTopWidth: 1,
     // borderTopColor: '#c1c1c1',
     marginTop: 10,
+  },
+  lebron: {
+    width: 24,
+    height: 20,
   },
 });
